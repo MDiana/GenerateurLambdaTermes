@@ -13,7 +13,7 @@ public class Node implements Tree {
 	}
 
 	public String toString() {
-		return "( " + this.leftNode_ + this.value_ + this.rightNode_ + " )";
+		return "(" + this.leftNode_ + this.value_ + this.rightNode_ + ")";
 	}
 
 }
