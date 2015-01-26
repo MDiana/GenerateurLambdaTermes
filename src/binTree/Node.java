@@ -1,6 +1,6 @@
 package binTree;
 
-public class Node extends Tree {
+public class Node implements Tree {
 
 	private Tree leftNode_ = null;
 	private Tree rightNode_ = null;
@@ -13,8 +13,7 @@ public class Node extends Tree {
 	}
 
 	public String toString() {
-		return "( " + this.leftNode_ + " ) " + this.value_ + " ( "
-				+ this.rightNode_ + " )";
+		return "( " + this.leftNode_ + this.value_ + this.rightNode_ + " )";
 	}
 
 }

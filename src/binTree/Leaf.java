@@ -1,6 +1,6 @@
 package binTree;
 
-public class Leaf extends Tree {
+public class Leaf implements Tree {
 
 	private String value_ = null;
 
