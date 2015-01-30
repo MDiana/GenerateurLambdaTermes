@@ -13,15 +13,15 @@ public class FlecheNode extends Node implements Type {
 		super(left, right, "->");
 	}
 
-	public Terme generateMinTermeV1() {
-		return this.generateMinTermeV1(new HashMap<String, Type>());
+	public Terme generateMinTerme() {
+		return this.generateMinTerme(new HashMap<String, Type>());
 	}
 
-	public Terme generateMinTermeV1(Map<String, Type> vars) {
+	public Terme generateMinTerme(Map<String, Type> vars) {
 		String var = "x" + vars.size();
 		vars.put(var, (Type) this.getLeftNode());
 		return new Abstraction(var, (Type) this.getLeftNode(),
-				((Type) this.rightNode_).generateMinTermeV1(vars));
+				((Type) this.rightNode_).generateMinTerme(vars));
 	}
 
 	@Override
@@ -37,18 +37,6 @@ public class FlecheNode extends Node implements Type {
 	}
 
 	@Override
-	public Terme generateMinTermeV2() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV2(Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Terme generateTermeV2(int minSize) {
 		// TODO Auto-generated method stub
 		return null;
@@ -56,18 +44,6 @@ public class FlecheNode extends Node implements Type {
 
 	@Override
 	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV3() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV3(Map<String, Type> vars) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -18,7 +18,7 @@ public class TestBoltz2 {
 			System.out.println("Type, size " + typeTree.getSize() + " :");
 			System.out.println(typeTree);
 
-			Terme termeTree = typeTree.generateMinTermeV2();
+			Terme termeTree = typeTree.generateMinTerme();
 			int minSize = termeTree.getSize();
 			System.out.println("Minimal term :");
 			System.out.println(termeTree);

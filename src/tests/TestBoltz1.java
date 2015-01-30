@@ -20,7 +20,7 @@ public class TestBoltz1 {
 
 			// GenerateurTerme termesGenerator = new GenerateurTerme(typeTree);
 			// Terme termeTree = termesGenerator.generate();
-			Terme termeTree = typeTree.generateMinTermeV1();
+			Terme termeTree = typeTree.generateMinTerme();
 			int minSize = termeTree.getSize();
 			System.out.println("Minimal term :");
 			System.out.println(termeTree);

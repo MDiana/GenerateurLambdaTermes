@@ -16,11 +16,11 @@ public class IntLeaf extends Leaf implements Type {
 		super("Int");
 	}
 
-	public Terme generateMinTermeV1() {
-		return this.generateMinTermeV1(new HashMap<String, Type>());
+	public Terme generateMinTerme() {
+		return this.generateMinTerme(new HashMap<String, Type>());
 	}
 
-	public Terme generateMinTermeV1(Map<String, Type> vars) {
+	public Terme generateMinTerme(Map<String, Type> vars) {
 		List<String> intVars = new ArrayList<>();
 		for (String key : vars.keySet()) {
 			if (vars.get(key) instanceof IntLeaf) {
@@ -32,7 +32,7 @@ public class IntLeaf extends Leaf implements Type {
 			rand = Math.random();
 		}
 		if (rand < 0.5) {
-			return Constante.getConstAleas();
+			return Constante.getIntConstAleas();
 		} else {
 			int aleas = (int) (Math.random() * intVars.size());
 			return new Variable(intVars.get(aleas));
@@ -52,18 +52,6 @@ public class IntLeaf extends Leaf implements Type {
 	}
 
 	@Override
-	public Terme generateMinTermeV2() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV2(Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Terme generateTermeV2(int minSize) {
 		// TODO Auto-generated method stub
 		return null;
@@ -71,18 +59,6 @@ public class IntLeaf extends Leaf implements Type {
 
 	@Override
 	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV3() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Terme generateMinTermeV3(Map<String, Type> vars) {
 		// TODO Auto-generated method stub
 		return null;
 	}

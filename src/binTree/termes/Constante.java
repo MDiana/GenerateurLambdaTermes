@@ -8,8 +8,13 @@ public class Constante extends Leaf implements Terme {
 		super(String.valueOf(value));
 	}
 
-	public static Constante getConstAleas() {
+	public static Constante getIntConstAleas() {
 		return new Constante((int) (Math.random() * 10));
+	}
+
+	public static Constante getListConstAleas() {
+		// TODO : Generate a random list
+		return null;
 	}
 
 }
