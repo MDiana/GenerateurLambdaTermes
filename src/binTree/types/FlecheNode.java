@@ -23,4 +23,64 @@ public class FlecheNode extends Node implements Type {
 		return new Abstraction(var, (Type) this.getLeftNode(),
 				((Type) this.rightNode_).generateMinTermeV1(vars));
 	}
+
+	@Override
+	public Terme generateTermeV1(int minSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateTermeV1(int minSize, Map<String, Type> vars) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateMinTermeV2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateMinTermeV2(Map<String, Type> vars) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateTermeV2(int minSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateMinTermeV3() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateMinTermeV3(Map<String, Type> vars) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateTermeV3(int minSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Terme generateTermeV3(int minSize, Map<String, Type> vars) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
