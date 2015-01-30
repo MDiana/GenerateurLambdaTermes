@@ -1,11 +1,41 @@
 package binTree.types;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import binTree.Leaf;
+import binTree.termes.Constante;
+import binTree.termes.Terme;
+import binTree.termes.Variable;
 
 public class IntLeaf extends Leaf implements Type {
 
-	public IntLeaf () {
-		super ("Int");
+	public IntLeaf() {
+		super("Int");
 	}
-	
+
+	public Terme generateMinTermeV1() {
+		return this.generateMinTermeV1(new HashMap<String, Type>());
+	}
+
+	public Terme generateMinTermeV1(Map<String, Type> vars) {
+		List<String> intVars = new ArrayList<>();
+		for (String key : vars.keySet()) {
+			if (vars.get(key) instanceof IntLeaf) {
+				intVars.add(key);
+			}
+		}
+		double rand = 0;
+		if (intVars.size() > 0) {
+			rand = Math.random();
+		}
+		if (rand < 0.5) {
+			return Constante.getConstAleas();
+		} else {
+			int aleas = (int) (Math.random() * intVars.size());
+			return new Variable(intVars.get(aleas));
+		}
+	}
 }
