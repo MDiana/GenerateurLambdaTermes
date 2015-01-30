@@ -9,4 +9,8 @@ public class Abstraction extends Node implements Terme {
 		super(tau, M, "λ" + val);
 	}
 
+	public String toString() {
+		return this.value_ + ":" + this.leftNode_ + ". " + this.rightNode_;
+	}
+
 }
