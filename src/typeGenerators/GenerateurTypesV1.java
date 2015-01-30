@@ -9,7 +9,7 @@ import binTree.types.Type;
 public class GenerateurTypesV1 {
 
 	private double z_ = 0;
-	private double probaFeuille = 0;
+	private double probaInt_ = 0;
 
 	/**
 	 * 
@@ -22,13 +22,13 @@ public class GenerateurTypesV1 {
 			throw new InvalidAttributeValueException();
 		}
 		this.z_ = z;
-		this.probaFeuille = (2 * this.z_) / (1 - Math.sqrt(1 - 4 * this.z_));
-		System.err.println(this.probaFeuille);
+		this.probaInt_ = (2 * this.z_) / (1 - Math.sqrt(1 - 4 * this.z_));
+		System.err.println(this.probaInt_);
 	}
 
 	public Type generate() {
 		double rand = Math.random();
-		if (rand < this.probaFeuille) {
+		if (rand < this.probaInt_) {
 			return new IntLeaf();
 		} else {
 			return new FlecheNode(this.generate(), this.generate());
