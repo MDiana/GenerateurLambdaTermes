@@ -5,7 +5,7 @@ import binTree.Tree;
 
 public class FlecheNode extends Node implements Type {
 
-	public FlecheNode(Tree left, Tree right) {
+	public FlecheNode(Type left, Type right) {
 		super(left, right, "->");
 	}
 

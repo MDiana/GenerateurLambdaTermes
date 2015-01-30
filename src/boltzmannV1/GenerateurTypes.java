@@ -5,6 +5,7 @@ import javax.naming.directory.InvalidAttributeValueException;
 import binTree.*;
 import binTree.types.FlecheNode;
 import binTree.types.IntLeaf;
+import binTree.types.Type;
 
 public class GenerateurTypes {
 
@@ -26,7 +27,7 @@ public class GenerateurTypes {
 		System.err.println(this.probaFeuille);
 	}
 
-	public Tree generate() {
+	public Type generate() {
 		double rand = Math.random();
 		if (rand < this.probaFeuille) {
 			return new IntLeaf();
