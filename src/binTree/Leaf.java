@@ -2,10 +2,20 @@ package binTree;
 
 public class Leaf implements Tree {
 
-	private String value_ = null;
+	protected String value_ = null;
 
 	public Leaf(String value) {
 		this.value_ = value;
+	}
+
+	/* Getters */
+
+	public String getValue() {
+		return this.value_;
+	}
+
+	public int getSize() {
+		return 0;
 	}
 
 	public String toString() {

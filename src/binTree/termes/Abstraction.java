@@ -7,7 +7,7 @@ import binTree.types.Type;
 public class Abstraction extends Node implements Terme {
 
 	public Abstraction(String val, Type tau, Terme M) {
-		super(tau, M, "lambda " + val);
+		super(tau, M, "λ" + val);
 	}
 
 }

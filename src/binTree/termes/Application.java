@@ -9,4 +9,8 @@ public class Application extends Node implements Type {
 		super(func, t, null);
 	}
 
+	public int size() {
+		return 1 + this.rightNode_.getSize();
+	}
+
 }

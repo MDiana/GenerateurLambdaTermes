@@ -2,14 +2,32 @@ package binTree;
 
 public class Node implements Tree {
 
-	private Tree leftNode_ = null;
-	private Tree rightNode_ = null;
-	private String value_ = null;
+	protected Tree leftNode_ = null;
+	protected Tree rightNode_ = null;
+	protected String value_ = null;
 
 	public Node(Tree left, Tree right, String value) {
 		this.leftNode_ = left;
 		this.rightNode_ = right;
 		this.value_ = value;
+	}
+
+	/* Getters */
+
+	public Tree getLeftNode() {
+		return this.leftNode_;
+	}
+
+	public Tree getRightNode() {
+		return this.rightNode_;
+	}
+
+	public String getValue() {
+		return this.value_;
+	}
+
+	public int getSize() {
+		return 1 + this.leftNode_.getSize() + this.rightNode_.getSize();
 	}
 
 	public String toString() {
