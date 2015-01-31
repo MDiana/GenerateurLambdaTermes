@@ -26,6 +26,14 @@ public class GenerateurTypesV1 {
 		System.err.println(this.probaInt_);
 	}
 
+	public Type generate(int minSize) {
+		Type t = null;
+		do {
+			t = generate();
+		} while (t.getSize() < minSize);
+		return t;
+	}
+
 	public Type generate() {
 		double rand = Math.random();
 		if (rand < this.probaInt_) {

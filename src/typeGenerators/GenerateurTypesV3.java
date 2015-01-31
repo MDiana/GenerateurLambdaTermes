@@ -37,6 +37,14 @@ public class GenerateurTypesV3 {
 
 	}
 
+	public Type generate(int minSize) {
+		Type t = null;
+		do {
+			t = generate();
+		} while (t.getSize() < minSize);
+		return t;
+	}
+
 	public Type generate() {
 		double rand = Math.random();
 		if (rand < this.probaInt_) {

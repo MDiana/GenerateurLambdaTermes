@@ -11,10 +11,7 @@ public class TestBoltz3 {
 		try {
 			double z = 1.0 / 8 - 1e-8;
 			GenerateurTypesV3 typeGenerator = new GenerateurTypesV3(z);
-			Type typeTree = null;
-			do {
-				typeTree = typeGenerator.generate();
-			} while (typeTree.getSize() != 3);
+			Type typeTree = typeGenerator.generate(5);
 			System.out.println("Type, size " + typeTree.getSize() + " :");
 			System.out.println(typeTree);
 
