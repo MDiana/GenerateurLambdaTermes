@@ -19,23 +19,23 @@ On obtient
 
     B(z) = (1-sqrt(1-4z))/2z
     
-En normalisant, on a une probabilité `B(z)/(B(z)+1)` de générer un noeud interne et une probabilité `1/(B(z)+1)` de générer une feuille.
-
-<!-- Ajouter la contrainte sur z -->
+Le paramètre de Boltzmann `z` est compris strictement entre `0` et `1/4`. En normalisant, on a une probabilité `zB²(z)/(zB²(z)+1)` de générer un noeud interne et une probabilité `1/(zB²(z)+1)` de générer une feuille.
     
 ### Construction d'un terme de taille minimale habitant un type
 
 On définit les termes de la façon suivante:
     
-    Terme ::= x | λx:σ.M | M N
+    Terme ::= x | c | λx:σ.M | M N
     
-`x` est une variable et on s'autorise également les constantes de 0 à 10 inclu.
+`x` est une variable et on s'autorise également les constantes de `0` à `10` inclu.
 
 Les termes peuvent, tout comme les types, être représentés sous forme d'un arbre où les noeuds internes représentent une abstraction ou une application.
 
-<!-- Expliquer comment on représente chaque élément sous forme d'arbre -->
+Pour un type donné, la taille minimal d'un terme est celle du type. On n'utilise pas les applications dans ce cas.
 
 ### Construction d'un terme de taille donnée habitant un type
+
+Pour un type `T1` donné et une taille `m` donnée, on génère un terme du type `T2 -> T1` où `T2` est suffisamment grand pour que la somme des types atteigne `m`. On ajoute ensuite une abstraction avec un terme de type `T2` pour retrouver un terme de type `T1` de taille au moins `m`.
     
 ## Termes enrichis
 
@@ -80,6 +80,16 @@ La constante `0` est trivialement de type `Int` mais également le terme suivant
 On ajoute le type `List[Int]` à la précédente définition.
 
     Type ::= Int | List[Int] | Type -> Type
+  
+La série associée est donc
+
+    B(z) = 1 + 1 + z B²(z)
+    
+On obtient
+
+    B(z) = (1-sqrt(1-8z))/2z
+    
+Le paramètre de Boltzmann `z` est compris strictement entre `0` et `1/8`. En normalisant, on a une probabilité `zB²(z)/(zB²(z)+2)` de générer un noeud interne et une probabilité `1/(zB²(z)+2)` de générer chaque feuille.
 
 ### Construction d'un terme de taille minimale habitant un type
 
