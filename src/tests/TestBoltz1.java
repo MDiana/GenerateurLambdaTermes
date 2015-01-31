@@ -9,8 +9,8 @@ public class TestBoltz1 {
 	public static void main(String[] args) {
 
 		try {
-
-			GenerateurTypesV1 typeGenerator = new GenerateurTypesV1(0.24999);
+			double z = 1.0 / 4 - 1e-8;
+			GenerateurTypesV1 typeGenerator = new GenerateurTypesV1(z);
 			Type typeTree = null;
 			do {
 				typeTree = typeGenerator.generate();
@@ -30,7 +30,7 @@ public class TestBoltz1 {
 			System.out.println(termeTree);
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}

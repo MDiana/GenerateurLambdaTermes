@@ -9,12 +9,12 @@ public class TestBoltz3 {
 	public static void main(String[] args) {
 
 		try {
-
-			GenerateurTypesV3 typeGenerator = new GenerateurTypesV3(0.24999);
+			double z = 1.0 / 8 - 1e-8;
+			GenerateurTypesV3 typeGenerator = new GenerateurTypesV3(z);
 			Type typeTree = null;
 			do {
 				typeTree = typeGenerator.generate();
-			} while (typeTree.getSize() < 5);
+			} while (typeTree.getSize() != 3);
 			System.out.println("Type, size " + typeTree.getSize() + " :");
 			System.out.println(typeTree);
 
@@ -28,7 +28,7 @@ public class TestBoltz3 {
 			System.out.println(termeTree);
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}

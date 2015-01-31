@@ -23,11 +23,18 @@ public class GenerateurTypesV3 {
 	/**
 	 * 
 	 * @param z
-	 *            : B(z) = 1 + 1 + B²(z)
+	 *            : B(z) = 1 + 1 + zB²(z)
 	 * @throws InvalidAttributeValueException
 	 */
 	public GenerateurTypesV3(double z) throws InvalidAttributeValueException {
-		// TODO
+		if (z <= 0 || z > (1.0 / 8)) {
+			throw new InvalidAttributeValueException("z in ]0; 1/8[ ; not " + z);
+		}
+		this.z_ = z;
+		this.probaInt_ = (2 * this.z_) / (1 - Math.sqrt(1 - 8 * this.z_));
+		this.probaList_ = this.probaInt_;
+		System.err.println(this.probaInt_);
+
 	}
 
 	public Type generate() {
