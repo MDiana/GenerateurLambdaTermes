@@ -3,8 +3,12 @@ package binTree.types;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
+import typeGenerators.GenerateurTypesV1;
 import binTree.Node;
 import binTree.termes.Abstraction;
+import binTree.termes.Application;
 import binTree.termes.Terme;
 
 public class FlecheNode extends Node implements Type {
@@ -24,16 +28,29 @@ public class FlecheNode extends Node implements Type {
 				((Type) this.rightNode_).generateMinTerme(vars));
 	}
 
-	@Override
-	public Terme generateTermeV1(int minSize) {
-		// TODO Auto-generated method stub
-		return null;
+	public Terme generateTermeV1(int minSize)
+			throws InvalidAttributeValueException {
+		return this.generateTermeV1(minSize, new HashMap<String, Type>());
 	}
 
 	@Override
-	public Terme generateTermeV1(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
+	public Terme generateTermeV1(int minSize, Map<String, Type> vars)
+			throws InvalidAttributeValueException {
+
+		if (minSize < this.getSize()) {
+			throw new InvalidAttributeValueException("Min size is "
+					+ this.getSize());
+		}
+
+		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+		int tailleNewType = minSize - this.getSize();
+
+		Type newType = generator.generate(tailleNewType);
+
+		Terme res = (new FlecheNode(newType, this)).generateMinTerme();
+
+		return new Application(res, newType.generateMinTerme());
+
 	}
 
 	@Override

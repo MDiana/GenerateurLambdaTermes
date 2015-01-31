@@ -11,7 +11,7 @@ public class TestBoltz1 {
 		try {
 			double z = 1.0 / 4 - 1e-8;
 			GenerateurTypesV1 typeGenerator = new GenerateurTypesV1(z);
-			Type typeTree = typeGenerator.generate(5);
+			Type typeTree = typeGenerator.generate(2);
 			System.out.println("Type, size " + typeTree.getSize() + " :");
 			System.out.println(typeTree);
 
@@ -22,8 +22,8 @@ public class TestBoltz1 {
 			System.out.println("Minimal term :");
 			System.out.println(termeTree);
 
-			termeTree = typeTree.generateTermeV1(minSize + 5);
-			System.out.println("Term:");
+			termeTree = typeTree.generateTermeV1(minSize + 2);
+			System.out.println("Term, size " + termeTree.getSize() + " :");
 			System.out.println(termeTree);
 
 		} catch (Exception e) {
