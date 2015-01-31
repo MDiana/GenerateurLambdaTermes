@@ -9,7 +9,7 @@ public class Constante extends Leaf implements Terme {
 	}
 
 	public static Constante getIntConstAleas() {
-		return new Constante((int) (Math.random() * 10));
+		return new Constante((int) (Math.random() * 11));
 	}
 
 	public static Constante getListConstAleas() {
