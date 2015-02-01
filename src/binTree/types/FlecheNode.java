@@ -41,14 +41,22 @@ public class FlecheNode extends Node implements Type {
 			return this.generateMinTerme();
 		}
 
-		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
-		int tailleNewType = minSize - this.getSize();
+		while (true) {
+			try {
+				GenerateurTypesV1 generator = new GenerateurTypesV1(
+						1.0 / 4 - 1e-8);
+				int tailleNewType = minSize - this.getSize();
 
-		Type newType = generator.generate(tailleNewType);
+				Type newType = generator.generate(tailleNewType);
 
-		Terme res = (new FlecheNode(newType, this)).generateMinTerme();
+				Terme res = (new FlecheNode(newType, this)).generateMinTerme();
 
-		return new Application(res, newType.generateMinTerme());
+				return new Application(res, newType.generateMinTerme());
+			} catch (Exception e) {
+				// Capture rarely cases of stackOverflow
+				System.err.println("Another try of generateTermeV1");
+			}
+		}
 
 	}
 
@@ -63,32 +71,42 @@ public class FlecheNode extends Node implements Type {
 		if (minSize < this.getSize()) {
 			return this.generateMinTerme(vars);
 		}
+		while (true) {
+			try {
 
-		double rand = Math.random();
+				double rand = Math.random();
 
-		if (rand < 0.5) {
-			String var = "x" + vars.size();
-			vars.put(var, (Type) this.getLeftNode());
-			System.err.println("Abstraction");
-			return new Abstraction(var, (Type) this.getLeftNode(),
-					((Type) this.rightNode_).generateTermeV2(minSize - 1, vars));
-		} else {
+				if (rand < 0.5) {
+					String var = "x" + vars.size();
+					vars.put(var, (Type) this.getLeftNode());
+					System.err.println("Abstraction");
+					return new Abstraction(var, (Type) this.getLeftNode(),
+							((Type) this.rightNode_).generateTermeV2(
+									minSize - 1, vars));
+				} else {
 
-			int size = this.getSize();
-			GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+					int size = this.getSize();
+					GenerateurTypesV1 generator = new GenerateurTypesV1(
+							1.0 / 4 - 1e-8);
 
-			int missingSize = minSize - size;
+					int missingSize = minSize - size;
 
-			Type newType = generator.generate(0, missingSize);
-			int tailleNewType = newType.getSize();
+					Type newType = generator.generate(0, missingSize);
+					int tailleNewType = newType.getSize();
 
-			Terme res = (new FlecheNode(newType, this)).generateTermeV2(size
-					+ tailleNewType + 1);
+					Terme res = (new FlecheNode(newType, this))
+							.generateTermeV2(size + tailleNewType + 1);
 
-			System.err.println("Application, NT size " + tailleNewType
-					+ " ; taille gauche " + (size + tailleNewType + 1));
-			return new Application(res, newType.generateTermeV2(tailleNewType));
+					System.err.println("Application, NT size " + tailleNewType
+							+ " ; taille gauche " + (size + tailleNewType + 1));
+					return new Application(res,
+							newType.generateTermeV2(tailleNewType));
 
+				}
+			} catch (Exception e) {
+				// Capture rarely cases of stackOverflow
+				System.err.println("Another try of generateTermeV2");
+			}
 		}
 	}
 
@@ -104,27 +122,37 @@ public class FlecheNode extends Node implements Type {
 			return this.generateMinTerme(vars);
 		}
 
-		double rand = Math.random();
+		while (true) {
+			try {
+				double rand = Math.random();
 
-		if (rand < 0.5) {
-			String var = "x" + vars.size();
-			vars.put(var, (Type) this.getLeftNode());
-			return new Abstraction(var, (Type) this.getLeftNode(),
-					((Type) this.rightNode_).generateTermeV3(minSize - 1, vars));
-		} else {
+				if (rand < 0.5) {
+					String var = "x" + vars.size();
+					vars.put(var, (Type) this.getLeftNode());
+					return new Abstraction(var, (Type) this.getLeftNode(),
+							((Type) this.rightNode_).generateTermeV3(
+									minSize - 1, vars));
+				} else {
 
-			int size = this.getSize();
-			GenerateurTypesV3 generator = new GenerateurTypesV3(1.0 / 8 - 1e-8);
+					int size = this.getSize();
+					GenerateurTypesV3 generator = new GenerateurTypesV3(
+							1.0 / 8 - 1e-8);
 
-			int missingSize = minSize - size;
+					int missingSize = minSize - size;
 
-			Type newType = generator.generate(0, missingSize);
-			int tailleNewType = newType.getSize();
+					Type newType = generator.generate(0, missingSize);
+					int tailleNewType = newType.getSize();
 
-			Terme res = (new FlecheNode(newType, this)).generateTermeV3(size
-					+ tailleNewType + 1);
-			return new Application(res, newType.generateTermeV3(tailleNewType));
+					Terme res = (new FlecheNode(newType, this))
+							.generateTermeV3(size + tailleNewType + 1);
+					return new Application(res,
+							newType.generateTermeV3(tailleNewType));
 
+				}
+			} catch (Exception e) {
+				// Capture rarely cases of stackOverflow
+				System.err.println("Another try of generateTermeV3");
+			}
 		}
 	}
 }
