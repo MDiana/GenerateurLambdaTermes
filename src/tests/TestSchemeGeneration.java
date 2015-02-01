@@ -12,14 +12,14 @@ public class TestSchemeGeneration {
 
 	public static void main(String[] args) {
 		
-		GenerateurTypesV3 generator;
+		GenerateurTypesV1 generator;
 		try {
-			generator = new GenerateurTypesV3(1/8.0-1e-8);
+			generator = new GenerateurTypesV1(1/8.0-1e-8);
 			
 			Type t = generator.generate();
 			
-			Terme term = t.generateTermeV3(15);			
-			
+			Terme term = t.generateTermeV2(15);			
+			System.out.println(term.getSize());
 			System.out.println(term.toScheme());
 		} catch (InvalidAttributeValueException e) {
 			e.printStackTrace();
