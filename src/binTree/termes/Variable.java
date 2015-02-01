@@ -8,4 +8,9 @@ public class Variable extends Leaf implements Terme {
 		super(name);
 	}
 
+	@Override
+	public String toScheme() {
+		return value_;
+	}
+
 }

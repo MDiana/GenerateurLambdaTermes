@@ -21,4 +21,13 @@ public class Constante extends Leaf implements Terme {
 		return null;
 	}
 
+	@Override
+	public String toScheme() {
+		if (value_ == "nil") {
+			return "[]";
+		} else {
+			return value_;
+		}
+	}
+
 }

@@ -12,4 +12,10 @@ public class Sum extends Node implements Terme {
 		return this.leftNode_ + this.value_ + this.rightNode_;
 	}
 
+	@Override
+	public String toScheme() {
+		return "(+ "+((Terme)leftNode_).toScheme() + " " +
+				((Terme)rightNode_).toScheme()+")";
+	}
+
 }
