@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.naming.directory.InvalidAttributeValueException;
 
 import typeGenerators.GenerateurTypesV1;
+import typeGenerators.GenerateurTypesV3;
 import binTree.Node;
 import binTree.termes.Abstraction;
 import binTree.termes.Application;
@@ -61,8 +62,9 @@ public class FlecheNode extends Node implements Type {
 			throws InvalidAttributeValueException {
 
 		if (minSize < this.getSize()) {
-			throw new InvalidAttributeValueException("Min size is "
-					+ this.getSize());
+			// throw new InvalidAttributeValueException("Min size is "+
+			// this.getSize());
+			// minSize = this.getSize();
 		}
 
 		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
@@ -87,11 +89,12 @@ public class FlecheNode extends Node implements Type {
 			throws InvalidAttributeValueException {
 
 		if (minSize < this.getSize()) {
-			throw new InvalidAttributeValueException("Min size is "
-					+ this.getSize());
+			// throw new InvalidAttributeValueException("Min size is "+
+			// this.getSize());
+			// minSize = this.getSize();
 		}
 
-		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 8 - 1e-8);
+		GenerateurTypesV3 generator = new GenerateurTypesV3(1.0 / 8 - 1e-8);
 
 		int abstSize = (int) (Math.random() * (minSize - this.getSize()));
 
