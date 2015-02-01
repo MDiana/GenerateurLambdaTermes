@@ -9,7 +9,7 @@ public class TestSchemeGeneration {
 
 	public static void main(String[] args) {
 		
-		Terme add = new Sum(new Constante(0), new Opposite(new Constante(1)));
+		Terme add = new Sum(Constante.getIntConstAleas(), new Opposite(Constante.getIntConstAleas()));
 		
 		System.out.println(add.toScheme());
 		
