@@ -16,11 +16,10 @@ public class TestSchemeGeneration {
 			
 			Type t = generator.generate();
 			
-			Terme term = t.generateTermeV2(3);			
+			Terme term = t.generateTermeV3(3);			
 			
 			System.out.println(term.toScheme());
 		} catch (InvalidAttributeValueException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

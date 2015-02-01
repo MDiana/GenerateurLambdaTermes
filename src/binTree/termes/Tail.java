@@ -18,7 +18,6 @@ public class Tail extends Node implements Terme {
 
 	@Override
 	public String toScheme() {
-		// TODO Auto-generated method stub
-		return null;
+		return "(cdr "+((Terme)leftNode_).toScheme()+")";
 	}
 }

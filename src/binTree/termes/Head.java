@@ -18,8 +18,7 @@ public class Head extends Node implements Terme {
 
 	@Override
 	public String toScheme() {
-		// TODO Auto-generated method stub
-		return null;
+		return "(car "+((Terme)leftNode_).toScheme()+")";
 	}
 
 }

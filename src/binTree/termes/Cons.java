@@ -14,8 +14,7 @@ public class Cons extends Node implements Terme {
 
 	@Override
 	public String toScheme() {
-		// TODO Auto-generated method stub
-		return null;
+		return "(cons "+((Terme)leftNode_).toScheme()+" "+((Terme)rightNode_).toScheme()+")";
 	}
 
 }
