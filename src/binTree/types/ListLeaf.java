@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import binTree.Leaf;
+import binTree.termes.Cons;
 import binTree.termes.Constante;
+import binTree.termes.Tail;
 import binTree.termes.Terme;
 import binTree.termes.Variable;
 
@@ -16,12 +18,10 @@ public class ListLeaf extends Leaf implements Type {
 		super("List[Int]");
 	}
 
-	@Override
 	public Terme generateMinTerme() {
 		return this.generateMinTerme(new HashMap<String, Type>());
 	}
 
-	@Override
 	public Terme generateMinTerme(Map<String, Type> vars) {
 		List<String> listVars = new ArrayList<>();
 		for (String key : vars.keySet()) {
@@ -41,40 +41,59 @@ public class ListLeaf extends Leaf implements Type {
 		}
 	}
 
-	@Override
 	public Terme generateTermeV1(int minSize) {
-		// TODO Auto-generated method stub
+		System.err.println("Not a right type for this grammar.");
 		return null;
 	}
 
-	@Override
 	public Terme generateTermeV1(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
+		System.err.println("Not a right type for this grammar.");
 		return null;
 	}
 
-	@Override
 	public Terme generateTermeV2(int minSize) {
-		// TODO Auto-generated method stub
+		System.err.println("Not a right type for this grammar.");
 		return null;
 	}
 
-	@Override
 	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
+		System.err.println("Not a right type for this grammar.");
 		return null;
 	}
 
-	@Override
 	public Terme generateTermeV3(int minSize) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.generateTermeV3(minSize, new HashMap<String, Type>());
 	}
 
-	@Override
 	public Terme generateTermeV3(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
+		if (minSize == 0) {
+			List<String> listVars = new ArrayList<>();
+			for (String key : vars.keySet()) {
+				if (vars.get(key) instanceof ListLeaf) {
+					listVars.add(key);
+				}
+			}
+			double rand = 0;
+			if (listVars.size() > 0) {
+				rand = Math.random();
+			}
+			if (rand < 0.5) {
+				return new Constante("nil");
+			} else {
+				int aleas = (int) (Math.random() * listVars.size());
+				return new Variable(listVars.get(aleas));
+			}
+		} else {
+			double rand = Math.random();
+			if (rand < 0.5) {
+				return new Tail(this.generateTermeV3(minSize - 1, vars));
+			} else {
+				int intSize = (int) (Math.random() * minSize);
+				Terme i = (new IntLeaf()).generateTermeV3(intSize, vars);
+				return new Cons(i,
+						this.generateTermeV3(minSize - intSize, vars));
+			}
+		}
 	}
 
 }
