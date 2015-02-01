@@ -33,7 +33,6 @@ public class FlecheNode extends Node implements Type {
 		return this.generateTermeV1(minSize, new HashMap<String, Type>());
 	}
 
-	@Override
 	public Terme generateTermeV1(int minSize, Map<String, Type> vars)
 			throws InvalidAttributeValueException {
 
@@ -53,27 +52,54 @@ public class FlecheNode extends Node implements Type {
 
 	}
 
-	@Override
-	public Terme generateTermeV2(int minSize) {
-		// TODO Auto-generated method stub
-		return null;
+	public Terme generateTermeV2(int minSize)
+			throws InvalidAttributeValueException {
+		return this.generateTermeV2(minSize, new HashMap<String, Type>());
+	}
+
+	public Terme generateTermeV2(int minSize, Map<String, Type> vars)
+			throws InvalidAttributeValueException {
+
+		if (minSize < this.getSize()) {
+			throw new InvalidAttributeValueException("Min size is "
+					+ this.getSize());
+		}
+
+		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+
+		int abstSize = (int) (Math.random() * (minSize - this.getSize()));
+
+		Type newType = generator.generate(abstSize);
+
+		Terme funct = (new FlecheNode(newType, this)).generateTermeV2(minSize
+				- abstSize);
+
+		return new Application(funct, newType.generateTermeV2(abstSize));
+	}
+
+	public Terme generateTermeV3(int minSize)
+			throws InvalidAttributeValueException {
+		return this.generateTermeV3(minSize, new HashMap<String, Type>());
 	}
 
 	@Override
-	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Terme generateTermeV3(int minSize, Map<String, Type> vars)
+			throws InvalidAttributeValueException {
 
-	@Override
-	public Terme generateTermeV3(int minSize) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		if (minSize < this.getSize()) {
+			throw new InvalidAttributeValueException("Min size is "
+					+ this.getSize());
+		}
 
-	@Override
-	public Terme generateTermeV3(int minSize, Map<String, Type> vars) {
-		// TODO Auto-generated method stub
-		return null;
+		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 8 - 1e-8);
+
+		int abstSize = (int) (Math.random() * (minSize - this.getSize()));
+
+		Type newType = generator.generate(abstSize);
+
+		Terme funct = (new FlecheNode(newType, this)).generateTermeV3(minSize
+				- abstSize);
+
+		return new Application(funct, newType.generateTermeV3(abstSize));
 	}
 }
