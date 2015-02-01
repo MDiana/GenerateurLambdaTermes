@@ -61,24 +61,35 @@ public class FlecheNode extends Node implements Type {
 	public Terme generateTermeV2(int minSize, Map<String, Type> vars)
 			throws InvalidAttributeValueException {
 
-		if (minSize < this.getSize()) {
-			// throw new InvalidAttributeValueException("Min size is "
-			// + this.getSize() + " not " + minSize);
-			minSize = this.getSize();
+		if (minSize <= this.getSize()) {
+			return this.generateMinTerme(vars);
 		}
 
+		int size = this.getSize();
+
 		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
-		int tailleNewType = minSize - this.getSize();
 
-		Type newType = generator.generate(tailleNewType);
+		System.err.println("Before missingSize");
+		int missingSize = minSize - this.getSize();
+		System.err.println("After missingSize : " + missingSize);
 
-//		Terme res = (new FlecheNode(newType, this)).generateTermeV2(this
-//				.getSize() + tailleNewType);
-		
-		Terme res = (new FlecheNode(newType, this)).generateMinTerme();
+		Type newType = generator.generate(0, missingSize);
 
+		System.err.println("Before tailleNewType");
+		int tailleNewType = newType.getSize();
+		System.err.println("After tailleNewType");
+
+		System.err.println("Before terme");
+		Terme res = (new FlecheNode(newType, this)).generateTermeV2(size
+				- tailleNewType);
+		System.err.println("After terme");
+
+		// Terme res = (new FlecheNode(newType, this)).generateMinTerme();
+
+		System.err.println("Before syserr");
 		System.err.println("minSize : " + minSize + " ; type size : "
 				+ this.getSize() + " ; NT size : " + tailleNewType);
+		System.err.println("After syserr");
 		return new Application(res, newType.generateTermeV2(tailleNewType));
 	}
 
