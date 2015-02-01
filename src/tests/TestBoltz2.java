@@ -12,6 +12,8 @@ public class TestBoltz2 {
 			double z = 1.0 / 4 - 1e-8;
 			GenerateurTypesV1 typeGenerator = new GenerateurTypesV1(z);
 			Type typeTree = typeGenerator.generate(5);
+			System.out.println("Type, size " + typeTree.getSize() + " :");
+			System.out.println(typeTree);
 
 			Terme termeTree = typeTree.generateMinTerme();
 			int minSize = termeTree.getSize();
