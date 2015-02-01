@@ -62,22 +62,46 @@ public class FlecheNode extends Node implements Type {
 			throws InvalidAttributeValueException {
 
 		if (minSize < this.getSize()) {
-			// throw new InvalidAttributeValueException("Min size is "+
-			// this.getSize());
-			// minSize = this.getSize();
+			// throw new InvalidAttributeValueException("Min size is "
+			// + this.getSize() + " not " + minSize);
+			minSize = this.getSize();
 		}
 
 		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+		int tailleNewType = minSize - this.getSize();
 
-		int abstSize = (int) (Math.random() * (minSize - this.getSize()));
+		Type newType = generator.generate(tailleNewType);
 
-		Type newType = generator.generate(abstSize);
+//		Terme res = (new FlecheNode(newType, this)).generateTermeV2(this
+//				.getSize() + tailleNewType);
+		
+		Terme res = (new FlecheNode(newType, this)).generateMinTerme();
 
-		Terme funct = (new FlecheNode(newType, this)).generateTermeV2(minSize
-				- abstSize);
-
-		return new Application(funct, newType.generateTermeV2(abstSize));
+		System.err.println("minSize : " + minSize + " ; type size : "
+				+ this.getSize() + " ; NT size : " + tailleNewType);
+		return new Application(res, newType.generateTermeV2(tailleNewType));
 	}
+
+	// public Terme generateTermeV2(int minSize, Map<String, Type> vars)
+	// throws InvalidAttributeValueException {
+	//
+	// if (minSize < this.getSize()) {
+	// // throw new InvalidAttributeValueException("Min size is "+
+	// // this.getSize());
+	// minSize = this.getSize();
+	// }
+	//
+	// GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+	//
+	// int abstSize = (int) (Math.random() * (minSize - this.getSize()));
+	//
+	// Type newType = generator.generate(abstSize, 2*abstSize);
+	//
+	// Terme funct = (new FlecheNode(newType, this)).generateTermeV2(minSize
+	// - abstSize);
+	//
+	// return new Application(funct, newType.generateTermeV2(abstSize));
+	// }
 
 	public Terme generateTermeV3(int minSize)
 			throws InvalidAttributeValueException {
@@ -91,7 +115,7 @@ public class FlecheNode extends Node implements Type {
 		if (minSize < this.getSize()) {
 			// throw new InvalidAttributeValueException("Min size is "+
 			// this.getSize());
-			// minSize = this.getSize();
+			minSize = this.getSize();
 		}
 
 		GenerateurTypesV3 generator = new GenerateurTypesV3(1.0 / 8 - 1e-8);
