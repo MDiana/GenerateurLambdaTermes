@@ -10,12 +10,18 @@ public class Abstraction extends Node implements Terme {
 	}
 
 	public String toString() {
-		return "λ" + this.value_ + ":" + this.leftNode_ + ". " + this.rightNode_;
+		return "λ" + this.value_ + ":" + this.leftNode_ + ". "
+				+ this.rightNode_;
+	}
+
+	public int getSize() {
+		return 1 + this.rightNode_.getSize();
 	}
 
 	@Override
 	public String toScheme() {
-		return "(lambda ("+value_+") "+((Terme)rightNode_).toScheme()+")";
+		return "(lambda (" + value_ + ") " + ((Terme) rightNode_).toScheme()
+				+ ")";
 	}
 
 }
