@@ -23,7 +23,7 @@ public class Constante extends Leaf implements Terme {
 	@Override
 	public String toScheme() {
 		if (value_ == "nil") {
-			return "[]";
+			return "'()";
 		} else {
 			return value_;
 		}
