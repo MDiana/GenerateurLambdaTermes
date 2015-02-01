@@ -52,7 +52,7 @@ public class FlecheNode extends Node implements Type {
 				Terme res = (new FlecheNode(newType, this)).generateMinTerme();
 
 				return new Application(res, newType.generateMinTerme());
-			} catch (Exception e) {
+			} catch (StackOverflowError e) {
 				// Capture rarely cases of stackOverflow
 				System.err.println("Another try of generateTermeV1");
 			}
@@ -103,7 +103,7 @@ public class FlecheNode extends Node implements Type {
 							newType.generateTermeV2(tailleNewType));
 
 				}
-			} catch (Exception e) {
+			} catch (StackOverflowError e) {
 				// Capture rarely cases of stackOverflow
 				System.err.println("Another try of generateTermeV2");
 			}
@@ -149,7 +149,7 @@ public class FlecheNode extends Node implements Type {
 							newType.generateTermeV3(tailleNewType));
 
 				}
-			} catch (Exception e) {
+			} catch (StackOverflowError e) {
 				// Capture rarely cases of stackOverflow
 				System.err.println("Another try of generateTermeV3");
 			}
