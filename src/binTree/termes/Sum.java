@@ -9,13 +9,13 @@ public class Sum extends Node implements Terme {
 	}
 
 	public String toString() {
-		return this.leftNode_ + this.value_ + this.rightNode_;
+		return "(" + this.leftNode_ + this.value_ + this.rightNode_ + ")";
 	}
 
 	@Override
 	public String toScheme() {
-		return "(+ "+((Terme)leftNode_).toScheme() + " " +
-				((Terme)rightNode_).toScheme()+")";
+		return "(+ " + ((Terme) leftNode_).toScheme() + " "
+				+ ((Terme) rightNode_).toScheme() + ")";
 	}
 
 }

@@ -13,11 +13,11 @@ public class Opposite extends Node implements Terme {
 	}
 
 	public String toString() {
-		return this.value_ + this.leftNode_;
+		return this.value_ + "(" + this.leftNode_ + ")";
 	}
 
 	@Override
 	public String toScheme() {
-		return "(- " + ((Terme)this.leftNode_).toScheme()+")";
+		return "(- " + ((Terme) this.leftNode_).toScheme() + ")";
 	}
 }
