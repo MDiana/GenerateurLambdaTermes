@@ -4,11 +4,11 @@ import binTree.Leaf;
 
 public class Constante extends Leaf implements Terme {
 
-	public Constante(int value) {
+	private Constante(int value) {
 		super(String.valueOf(value));
 	}
 
-	public Constante(String value) {
+	private Constante(String value) {
 		super(value);
 	}
 
@@ -16,9 +16,8 @@ public class Constante extends Leaf implements Terme {
 		return new Constante((int) (Math.random() * 11));
 	}
 
-	public static Constante getListConstAleas() {
-		// TODO : Generate a random list
-		return null;
+	public static Constante getListConst() {
+		return new Constante("nil");
 	}
 
 	@Override
