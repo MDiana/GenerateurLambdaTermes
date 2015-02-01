@@ -61,83 +61,75 @@ public class FlecheNode extends Node implements Type {
 	public Terme generateTermeV2(int minSize, Map<String, Type> vars)
 			throws InvalidAttributeValueException {
 
-		if (minSize <= this.getSize()) {
+		if (minSize < this.getSize()) {
 			return this.generateMinTerme(vars);
 		}
 
-		int size = this.getSize();
+		double rand = Math.random();
 
-		GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
+		if (rand < 0.5) {
+			String var = "x" + vars.size();
+			vars.put(var, (Type) this.getLeftNode());
+			System.err.println("Abstraction");
+			return new Abstraction(var, (Type) this.getLeftNode(),
+					((Type) this.rightNode_).generateTermeV2(minSize - 1, vars));
+		} else {
 
-		System.err.println("Before missingSize");
-		int missingSize = minSize - this.getSize();
-		System.err.println("After missingSize : " + missingSize);
+			int size = this.getSize();
+			GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
 
-		Type newType = generator.generate(0, missingSize);
+			int missingSize = minSize - size;
 
-		System.err.println("Before tailleNewType");
-		int tailleNewType = newType.getSize();
-		System.err.println("After tailleNewType");
+			Type newType = generator.generate(0, missingSize);
+			int tailleNewType = newType.getSize();
 
-		System.err.println("Before terme");
-		Terme res = (new FlecheNode(newType, this)).generateTermeV2(size
-				- tailleNewType);
-		System.err.println("After terme");
+			Terme res = (new FlecheNode(newType, this)).generateTermeV2(size
+					+ tailleNewType + 1);
 
-		// Terme res = (new FlecheNode(newType, this)).generateMinTerme();
+			System.err.println("Application, NT size " + tailleNewType
+					+ " ; taille gauche " + (size + tailleNewType + 1));
+			return new Application(res, newType.generateTermeV2(tailleNewType));
 
-		System.err.println("Before syserr");
-		System.err.println("minSize : " + minSize + " ; type size : "
-				+ this.getSize() + " ; NT size : " + tailleNewType);
-		System.err.println("After syserr");
-		return new Application(res, newType.generateTermeV2(tailleNewType));
+		}
 	}
-
-	// public Terme generateTermeV2(int minSize, Map<String, Type> vars)
-	// throws InvalidAttributeValueException {
-	//
-	// if (minSize < this.getSize()) {
-	// // throw new InvalidAttributeValueException("Min size is "+
-	// // this.getSize());
-	// minSize = this.getSize();
-	// }
-	//
-	// GenerateurTypesV1 generator = new GenerateurTypesV1(1.0 / 4 - 1e-8);
-	//
-	// int abstSize = (int) (Math.random() * (minSize - this.getSize()));
-	//
-	// Type newType = generator.generate(abstSize, 2*abstSize);
-	//
-	// Terme funct = (new FlecheNode(newType, this)).generateTermeV2(minSize
-	// - abstSize);
-	//
-	// return new Application(funct, newType.generateTermeV2(abstSize));
-	// }
 
 	public Terme generateTermeV3(int minSize)
 			throws InvalidAttributeValueException {
 		return this.generateTermeV3(minSize, new HashMap<String, Type>());
 	}
 
-	@Override
 	public Terme generateTermeV3(int minSize, Map<String, Type> vars)
 			throws InvalidAttributeValueException {
 
 		if (minSize < this.getSize()) {
-			// throw new InvalidAttributeValueException("Min size is "+
-			// this.getSize());
-			minSize = this.getSize();
+			return this.generateMinTerme(vars);
 		}
 
-		GenerateurTypesV3 generator = new GenerateurTypesV3(1.0 / 8 - 1e-8);
+		double rand = Math.random();
 
-		int abstSize = (int) (Math.random() * (minSize - this.getSize()));
+		if (rand < 0.5) {
+			String var = "x" + vars.size();
+			vars.put(var, (Type) this.getLeftNode());
+			System.err.println("Abstraction");
+			return new Abstraction(var, (Type) this.getLeftNode(),
+					((Type) this.rightNode_).generateTermeV3(minSize - 1, vars));
+		} else {
 
-		Type newType = generator.generate(abstSize);
+			int size = this.getSize();
+			GenerateurTypesV3 generator = new GenerateurTypesV3(1.0 / 8 - 1e-8);
 
-		Terme funct = (new FlecheNode(newType, this)).generateTermeV3(minSize
-				- abstSize);
+			int missingSize = minSize - size;
 
-		return new Application(funct, newType.generateTermeV3(abstSize));
+			Type newType = generator.generate(0, missingSize);
+			int tailleNewType = newType.getSize();
+
+			Terme res = (new FlecheNode(newType, this)).generateTermeV3(size
+					+ tailleNewType + 1);
+
+			System.err.println("Application, NT size " + tailleNewType
+					+ " ; taille gauche " + (size + tailleNewType + 1));
+			return new Application(res, newType.generateTermeV3(tailleNewType));
+
+		}
 	}
 }

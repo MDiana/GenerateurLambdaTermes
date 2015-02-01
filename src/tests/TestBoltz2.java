@@ -25,6 +25,7 @@ public class TestBoltz2 {
 				termeTree = typeTree.generateTermeV2(minSize + 5);
 				System.out.println("Term, size " + termeTree.getSize() + " :");
 				System.out.println(termeTree);
+				System.out.println();
 			}
 
 		} catch (Exception e) {
