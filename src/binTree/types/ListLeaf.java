@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import binTree.Leaf;
 import binTree.termes.Cons;
 import binTree.termes.Constante;
@@ -41,24 +43,28 @@ public class ListLeaf extends Leaf implements Type {
 		}
 	}
 
-	public Terme generateTermeV1(int minSize) {
-		System.err.println("Not a right type for this grammar.");
-		return null;
+	public Terme generateTermeV1(int minSize)
+			throws InvalidAttributeValueException {
+		throw new InvalidAttributeValueException(
+				"Not a right type for this grammar.");
 	}
 
-	public Terme generateTermeV1(int minSize, Map<String, Type> vars) {
-		System.err.println("Not a right type for this grammar.");
-		return null;
+	public Terme generateTermeV1(int minSize, Map<String, Type> vars)
+			throws InvalidAttributeValueException {
+		throw new InvalidAttributeValueException(
+				"Not a right type for this grammar.");
 	}
 
-	public Terme generateTermeV2(int minSize) {
-		System.err.println("Not a right type for this grammar.");
-		return null;
+	public Terme generateTermeV2(int minSize)
+			throws InvalidAttributeValueException {
+		throw new InvalidAttributeValueException(
+				"Not a right type for this grammar.");
 	}
 
-	public Terme generateTermeV2(int minSize, Map<String, Type> vars) {
-		System.err.println("Not a right type for this grammar.");
-		return null;
+	public Terme generateTermeV2(int minSize, Map<String, Type> vars)
+			throws InvalidAttributeValueException {
+		throw new InvalidAttributeValueException(
+				"Not a right type for this grammar.");
 	}
 
 	public Terme generateTermeV3(int minSize) {
