@@ -33,7 +33,6 @@ public class GenerateurTypesV3 {
 		this.z_ = z;
 		this.probaInt_ = (2 * this.z_) / (1 - Math.sqrt(1 - 8 * this.z_));
 		this.probaList_ = this.probaInt_;
-		System.err.println(this.probaInt_);
 
 	}
 

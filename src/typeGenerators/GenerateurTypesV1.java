@@ -23,7 +23,6 @@ public class GenerateurTypesV1 {
 		}
 		this.z_ = z;
 		this.probaInt_ = (2 * this.z_) / (1 - Math.sqrt(1 - 4 * this.z_));
-		System.err.println(this.probaInt_);
 	}
 
 	public Type generate(int minSize) {
