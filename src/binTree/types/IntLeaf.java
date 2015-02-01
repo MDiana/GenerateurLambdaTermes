@@ -100,7 +100,7 @@ public class IntLeaf extends Leaf implements Type {
 				int intSize = (int) (Math.random() * (minSize - 2));
 				return new Head(new Cons(this.generateTermeV3(intSize, vars),
 						(new ListLeaf()).generateTermeV3(minSize - intSize - 2,
-								vars, false)));
+								vars)));
 			}
 		}
 	}
