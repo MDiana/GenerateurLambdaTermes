@@ -34,7 +34,7 @@ public class ListLeaf extends Leaf implements Type {
 			rand = Math.random();
 		}
 		if (rand < 0.5) {
-			return Constante.getListConstAleas();
+			return Constante.getListConst();
 		} else {
 			int aleas = (int) (Math.random() * listVars.size());
 			return new Variable(listVars.get(aleas));
@@ -79,7 +79,7 @@ public class ListLeaf extends Leaf implements Type {
 				rand = Math.random();
 			}
 			if (rand < 0.5) {
-				return new Constante("nil");
+				return Constante.getListConst();
 			} else {
 				int aleas = (int) (Math.random() * listVars.size());
 				return new Variable(listVars.get(aleas));
