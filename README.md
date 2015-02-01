@@ -103,5 +103,5 @@ On utilise la même méthode que précedemment, en ajoutant les possibilités of
 
 ## Bilan
 
-La solution produite permet de générer tous les types et de générer pour chaque type une infinité de termes l'habitant. Cependant, la génération de termes n'est pas exhaustive. En particulier en ce qui concerne les applications. En effet, on ne génère des applications que lorsque le type à matcher est une flèche et on génère le paramètre indépemment du reste. Avec notre générateur actuel, on ne génère par exemple `λf;Int->Int. λx:Int. (f x).
+La solution produite permet de générer tous les types et de générer pour chaque type une infinité de termes l'habitant. Cependant, la génération de termes n'est pas exhaustive. En particulier en ce qui concerne les applications. En effet, on ne génère des applications que lorsque le type à matcher est une flèche et on génère le paramètre indépemment du reste. Avec notre générateur actuel, on ne génère par exemple `λf;Int->Int. λx:Int. (f x)`.
 Il arrive également, raremenent, que des StackOverflowError surviennent. Nous supposons que l'origine du problème pourrait être un type ou un terme trop imposant. Mais cette erreur n'intervenant que rarement, nous avons décidé de ne pas la traiter.
