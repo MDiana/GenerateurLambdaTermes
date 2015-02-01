@@ -16,4 +16,9 @@ public class Application extends Node implements Terme {
 		return "( (" + this.leftNode_ + ") (" + this.rightNode_ + ") )";
 	}
 
+	@Override
+	public String toScheme() {
+		return "(" + ((Terme)leftNode_).toScheme() + " " + ((Terme)rightNode_).toScheme() + ")";
+	}
+
 }

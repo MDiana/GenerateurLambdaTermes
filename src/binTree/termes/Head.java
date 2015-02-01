@@ -16,4 +16,10 @@ public class Head extends Node implements Terme {
 		return this.value_ + this.leftNode_;
 	}
 
+	@Override
+	public String toScheme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

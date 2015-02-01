@@ -18,6 +18,6 @@ public class Opposite extends Node implements Terme {
 
 	@Override
 	public String toScheme() {
-		return "-" + ((Terme)this.leftNode_).toScheme();
+		return "(- " + ((Terme)this.leftNode_).toScheme()+")";
 	}
 }

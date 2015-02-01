@@ -12,4 +12,10 @@ public class Cons extends Node implements Terme {
 		return this.value_ + this.leftNode_ + this.rightNode_;
 	}
 
+	@Override
+	public String toScheme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

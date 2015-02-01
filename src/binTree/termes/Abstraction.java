@@ -6,11 +6,16 @@ import binTree.types.Type;
 public class Abstraction extends Node implements Terme {
 
 	public Abstraction(String val, Type tau, Terme M) {
-		super(tau, M, "λ" + val);
+		super(tau, M, val);
 	}
 
 	public String toString() {
-		return this.value_ + ":" + this.leftNode_ + ". " + this.rightNode_;
+		return "λ" + this.value_ + ":" + this.leftNode_ + ". " + this.rightNode_;
+	}
+
+	@Override
+	public String toScheme() {
+		return "(lambda ("+value_+") "+((Terme)rightNode_).toScheme()+")";
 	}
 
 }

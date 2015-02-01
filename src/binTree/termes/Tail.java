@@ -15,4 +15,10 @@ public class Tail extends Node implements Terme {
 	public String toString() {
 		return this.value_ + this.leftNode_;
 	}
+
+	@Override
+	public String toScheme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

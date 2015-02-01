@@ -1,17 +1,28 @@
 package tests;
 
-import binTree.termes.Constante;
-import binTree.termes.Opposite;
-import binTree.termes.Sum;
+import javax.naming.directory.InvalidAttributeValueException;
+
+import typeGenerators.GenerateurTypesV1;
 import binTree.termes.Terme;
+import binTree.types.Type;
 
 public class TestSchemeGeneration {
 
 	public static void main(String[] args) {
 		
-		Terme add = new Sum(Constante.getIntConstAleas(), new Opposite(Constante.getIntConstAleas()));
-		
-		System.out.println(add.toScheme());
+		GenerateurTypesV1 generator;
+		try {
+			generator = new GenerateurTypesV1(0.24444);
+			
+			Type t = generator.generate();
+			
+			Terme term = t.generateTermeV2(3);			
+			
+			System.out.println(term.toScheme());
+		} catch (InvalidAttributeValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
