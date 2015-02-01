@@ -1,5 +1,5 @@
 # Génération de lambda termes pour du test
-Projet AAGA "Générateur de lambda-termes pour du test"
+Projet AAGA "Générateur de lambda-termes pour du test" -- [Sujet](http://www-apr.lip6.fr/~genitrini/doc_ens/td5_M2_AAGA.pdf)
 
 ## Termes les plus simples
 
@@ -31,7 +31,9 @@ On définit les termes de la façon suivante:
 
 Les termes peuvent, tout comme les types, être représentés sous forme d'un arbre où les noeuds internes représentent une abstraction ou une application.
 
-Pour un type donné, la taille minimal d'un terme est celle du type. On n'utilise pas les applications dans ce cas.
+La taille d'un terme est le nombre de noeuds internes nécessaires pour le représenter sans compter ceux qui représente un type dans le cas de l'abstraction. On conservera cette définition dans le reste du document.
+
+Pour un type donné, on n'utilise pas les applications pour avoir un terme de taille minimale.
 
 ### Construction d'un terme de taille donnée habitant un type
 
@@ -39,7 +41,7 @@ Pour un type `T1` donné et une taille `m` donnée, on génère un terme du type
     
 ## Termes enrichis
 
-### Des types simples, et d'autres un peu plus construits
+### Des termes simples, et d'autres un peu plus construits
 
 La constante `0` est trivialement de type `Int` mais également le terme suivant: `λx:Int.λy:Int.x+y 10 12`.
 
@@ -56,22 +58,18 @@ On choisit de conserver la représentation des types définie précédemment.
 ### Construction d'un terme de taille minimale habitant un type
 
 Comme précédemment, on représente les termes sous forme d'arbre. En plus des abstractions et des applications, les noeuds internes peuvent aussi représenter une addition ou alors l'opposé.
+   
+    Terme ::= x | c | λx:σ.M | M N | M + N | -M
 
-La taille d'un terme est le nombre de noeuds internes nécessaires pour le représenter sans compter ceux qui représente un type dans le cas de l'abstraction.
-
-La série associée est:
-
-    T(z) = 1 + z Abs(z) + z App(z) + z Add(z) + z Opp(z)
-    Abs(z) = T(z)
-    App(z) = T²(z)
-    Add(z) = T²(z)
-    Opp(z) = T(z)
+Pour la génération d'un terme de taille minimale, on ne va pas utiliser ces éléments qui ajoute de nouveaux noeuds internes (et donc augmente la taille), sans permettre de matcher de nouveaux types. On garde donc la génération des termes simples.
 
 ### Construction d'un terme de taille donnée habitant un type
 
+Précédemment, pour agrandir un terme tout en conservant son type, l'ajout d'un application était la seule possibilité. Avec cette nouvelle grammaire, on peut également agrandir une fois aux feuilles avec les opérations `+` et `-`.
+
 ## Termes riches
 
-### Des types simples, et d'autres un peu plus construits
+### Des termes simples, et d'autres un peu plus construits
 
 La constante `0` est trivialement de type `Int` mais également le terme suivant: `(λx:List[Int].head x) (cons 9 [])`.
 
@@ -93,4 +91,16 @@ Le paramètre de Boltzmann `z` est compris strictement entre `0` et `1/8`. En no
 
 ### Construction d'un terme de taille minimale habitant un type
 
+On considère maintenant les termes suivants, ainsi que la liste vide dans les constantes.
+   
+    Terme ::= x | c | λx:σ.M | M N | M + N | -M | head M | tail M | cons M
+    
+Les nouveaux éléments ajoutent des noeuds internes, on utilisera donc en plus uniquement la constante `nil` pour matcher le type `List[Int]`.
+
 ### Construction d'un terme de taille donnée habitant un type
+
+On utilise la même méthode que précedemment, en ajoutant les possibilités offertes par les listes:, `cons`, `head` et `tail`. Dans le cas de ces deux derniers, on génère immédiatement un `cons` avec pour ne pas se préoccuper de la taille. On évite de faire un `head` sur une liste vide.
+
+## Bilan
+
+La solution produite permet de générer tous les types et de générer pour chaque type une infinité de termes l'habitant. Cependant, la génération de termes n'est pas exhaustive. En particulier en ce qui concerne les applications. En effet, on ne génère des applications que lorsque le type à matcher est une flèche et on génère le paramètre indépemment du reste. Avec notre générateur actuel, on ne génère par exemple `λf;Int->Int. λx:Int. (f x).
