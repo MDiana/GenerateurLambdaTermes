@@ -77,7 +77,7 @@ public class ListLeaf extends Leaf implements Type {
 
 	public Terme generateTermeV3(int minSize, Map<String, Type> vars,
 			boolean canBeEmpty) {
-		if (minSize == 0) {
+		if (minSize <= 0) {
 			// Return constante or variable
 			List<String> listVars = new ArrayList<>();
 			for (String key : vars.keySet()) {
@@ -104,7 +104,10 @@ public class ListLeaf extends Leaf implements Type {
 			// Return tail or cons
 			double rand = Math.random();
 			if (rand < 0.5) {
-				return new Tail(this.generateTermeV3(minSize - 1, vars, false));
+				int intSize = (int) (Math.random() * (minSize - 2));
+				return new Tail(new Cons((new IntLeaf()).generateTermeV3(
+						intSize, vars), this.generateTermeV3(minSize - intSize
+						- 2, vars, false)));
 			} else {
 				int intSize = (int) (Math.random() * minSize);
 				Terme i = (new IntLeaf()).generateTermeV3(intSize, vars);
@@ -113,5 +116,4 @@ public class ListLeaf extends Leaf implements Type {
 			}
 		}
 	}
-
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.naming.directory.InvalidAttributeValueException;
 
 import binTree.Leaf;
+import binTree.termes.Cons;
 import binTree.termes.Constante;
 import binTree.termes.Head;
 import binTree.termes.Opposite;
@@ -83,7 +84,7 @@ public class IntLeaf extends Leaf implements Type {
 	}
 
 	public Terme generateTermeV3(int minSize, Map<String, Type> vars) {
-		if (minSize == 0) {
+		if (minSize <= 0) {
 			// Return constante or variable
 			return this.generateMinTerme(vars);
 		} else {
@@ -96,8 +97,10 @@ public class IntLeaf extends Leaf implements Type {
 			} else if (rand < 2.0 / 3) {
 				return new Opposite(this.generateTermeV3(minSize - 1, vars));
 			} else {
-				return new Head((new ListLeaf()).generateTermeV3(minSize - 1,
-						vars, false));
+				int intSize = (int) (Math.random() * (minSize - 2));
+				return new Head(new Cons(this.generateTermeV3(intSize, vars),
+						(new ListLeaf()).generateTermeV3(minSize - intSize - 2,
+								vars, false)));
 			}
 		}
 	}
