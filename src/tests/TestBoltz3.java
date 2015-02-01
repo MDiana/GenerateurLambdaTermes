@@ -11,23 +11,24 @@ public class TestBoltz3 {
 		try {
 			double z = 1.0 / 8 - 1e-8;
 			GenerateurTypesV3 typeGenerator = new GenerateurTypesV3(z);
-			Type typeTree = typeGenerator.generate(5);
-			System.out.println("Type, size " + typeTree.getSize() + " :");
-			System.out.println(typeTree);
+			for (int i = 0; i < 10; i++) {
+				Type typeTree = typeGenerator.generate(3);
+				System.out.println("Type, size " + typeTree.getSize() + " :");
+				System.out.println(typeTree);
 
-			Terme termeTree = typeTree.generateMinTerme();
-			int minSize = termeTree.getSize();
-			System.out.println("Minimal term :");
-			System.out.println(termeTree);
+				Terme termeTree = typeTree.generateMinTerme();
+				int minSize = termeTree.getSize();
+				System.out.println("Minimal term :");
+				System.out.println(termeTree);
 
-			termeTree = typeTree.generateTermeV3(minSize + 5);
-			System.out.println("Term, size " + termeTree.getSize() + " :");
-			System.out.println(termeTree);
+				termeTree = typeTree.generateTermeV3(minSize + 5);
+				System.out.println("Term, size " + termeTree.getSize() + " :");
+				System.out.println(termeTree);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-
 }
