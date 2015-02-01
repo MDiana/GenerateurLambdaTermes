@@ -97,7 +97,7 @@ public class IntLeaf extends Leaf implements Type {
 				return new Opposite(this.generateTermeV3(minSize - 1, vars));
 			} else {
 				return new Head((new ListLeaf()).generateTermeV3(minSize - 1,
-						vars));
+						vars, false));
 			}
 		}
 	}
