@@ -33,6 +33,14 @@ public class GenerateurTypesV1 {
 		return t;
 	}
 
+	public Type generate(int minSize, int maxSize) {
+		Type t = null;
+		do {
+			t = generate();
+		} while (t.getSize() < minSize || t.getSize() > maxSize);
+		return t;
+	}
+
 	public Type generate() {
 		double rand = Math.random();
 		if (rand < this.probaInt_) {
