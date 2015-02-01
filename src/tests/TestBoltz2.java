@@ -15,6 +15,7 @@ public class TestBoltz2 {
 			for (int i = 0; i < 5; i++) {
 				Type typeTree = typeGenerator.generate(5, 50);
 				System.out.println("Type, size " + typeTree.getSize());
+				System.out.println(typeTree);
 
 				Terme termeTree = typeTree.generateMinTerme();
 				int minSize = termeTree.getSize();
