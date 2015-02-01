@@ -8,18 +8,18 @@ import binTree.termes.Terme;
 import binTree.types.Type;
 
 @SuppressWarnings("unused")
-public class TestSchemeGeneration {
+public class TestSchemeGenerationV3 {
 
 	public static void main(String[] args) {
 
-		GenerateurTypesV1 generator;
+		GenerateurTypesV3 generator;
 		try {
-			generator = new GenerateurTypesV1(1 / 8.0 - 1e-8);
+			generator = new GenerateurTypesV3(1 / 8.0 - 1e-8);
 
 			Type t = null;
 			t = generator.generate(10);
 
-			Terme term = t.generateTermeV2(20);
+			Terme term = t.generateTermeV3(20);
 			System.out.println(term.getSize());
 			System.out.println(term.toScheme());
 		} catch (InvalidAttributeValueException e) {
