@@ -53,7 +53,9 @@ La constante `0` est trivialement de type `Int` mais également le terme suivant
 
 On choisit de conserver la représentation des types définie précédemment.
 
-<!-- Expliquer pourquoi on peut se passer de flèche+ et flèche- -->
+En effet, le terme `λx:Int.λy:Int.x+y` de type `Int -> Int -> Int` représente très bien ce qu'on souhaite représenter avec le type `Int ->+ Int ->+ Int`.
+
+De même avec `λx:Int.-x` de type `Int -> Int` pour réprésenter le type `Int ->- Int`.
 
 ### Construction d'un terme de taille minimale habitant un type
 
@@ -103,5 +105,6 @@ On utilise la même méthode que précedemment, en ajoutant les possibilités of
 
 ## Bilan
 
-La solution produite permet de générer tous les types et de générer pour chaque type une infinité de termes l'habitant. Cependant, la génération de termes n'est pas exhaustive. En particulier en ce qui concerne les applications. En effet, on ne génère des applications que lorsque le type à matcher est une flèche et on génère le paramètre indépemment du reste. Avec notre générateur actuel, on ne génère par exemple `λf;Int->Int. λx:Int. (f x)`.
+La solution produite permet de générer tous les types et de générer pour chaque type une infinité de termes l'habitant. Cependant, la génération de termes n'est pas exhaustive. En particulier en ce qui concerne les applications. En effet, on ne génère des applications que lorsque le type à matcher est une flèche et on génère le paramètre indépemment du reste. Avec notre générateur actuel, on ne génère pas, par exemple `λf:Int->Int. λx:Int. (f x)`.
+
 Il arrive également, raremenent, que des StackOverflowError surviennent. Nous supposons que l'origine du problème pourrait être un type ou un terme trop imposant. Mais cette erreur n'intervenant que rarement, nous avons décidé de ne pas la traiter.
